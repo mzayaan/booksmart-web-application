@@ -1,0 +1,86 @@
+﻿/* Light mode stays default Bootstrap colors */
+
+/* Dark mode overrides */
+.dark-mode {
+    background-color: #121212 !important;
+    color: #e1e1e1 !important;
+}
+
+    .dark-mode .navbar {
+        background-color: #333 !important;
+    }
+
+    .dark-mode .table {
+        background-color: #1e1e1e;
+        color: #f0f0f0;
+    }
+
+    .dark-mode .btn {
+        border-color: #f0f0f0;
+        color: #f0f0f0;
+    }
+
+/* Default Light Mode styling for the button */
+#themeToggle {
+    border-color: #333;
+    color: #333;
+    background-color: white;
+}
+
+/* Dark Mode styling for the button */
+.dark-mode #themeToggle {
+    border-color: #f0f0f0;
+    color: #f0f0f0;
+    background-color: #444;
+}
+/* Dark mode navbar styling */
+.dark-mode .navbar {
+    background-color: #333 !important;
+}
+
+    .dark-mode .navbar .nav-link {
+        color: #f0f0f0 !important;
+    }
+
+        .dark-mode .navbar .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+.dark-mode .navbar-brand {
+    color: #f0f0f0 !important;
+}
+.dark-mode .bg-light,
+.dark-mode .jumbotron {
+    background-color: #1e1e1e !important;
+    color: #f0f0f0 !important;
+}
+
+    .dark-mode .bg-light h1,
+    .dark-mode .jumbotron h1 {
+        color: #ffffff !important;
+    }
+
+    .dark-mode .bg-light p,
+    .dark-mode .jumbotron p {
+        color: #dddddd !important;
+    }
+
+.card:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.card i {
+    transition: transform 0.3s ease;
+}
+
+.card:hover i {
+    transform: scale(1.2) rotate(10deg);
+}
+body.dark-mode .card {
+    background-color: #333;
+    color: #fff;
+}
+
+
+
