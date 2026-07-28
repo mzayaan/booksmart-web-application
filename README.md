@@ -1,112 +1,67 @@
-<div id="top">
+# BookSmart
 
-<!-- HEADER STYLE: CLASSIC -->
-<div align="center">
+An online bookstore built with ASP.NET Web Forms (.NET Framework 4.7.2), C# and
+SQL Server, with a Bootstrap front end. Written for the BSc (Hons) Software
+Engineering programme at the University of Technology, Mauritius.
 
+## Features
 
-# BOOKSMART-WEB-APPLICATION
+**Accounts** — registration, forms-authentication login, logout and password
+recovery. Anonymous users can browse; everything else requires a session.
 
-<em>Empowering Learning Through Seamless Digital Book Experiences</em>
+**Shopping** — browse the catalogue, add to cart, place an order, pay, and
+review order history and confirmations.
 
-<!-- BADGES -->
-<img src="https://img.shields.io/github/last-commit/mzayaan/booksmart-web-application?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-<img src="https://img.shields.io/github/languages/top/mzayaan/booksmart-web-application?style=flat&color=0080ff" alt="repo-top-language">
-<img src="https://img.shields.io/github/languages/count/mzayaan/booksmart-web-application?style=flat&color=0080ff" alt="repo-language-count">
+**Admin** — dashboard, management screens and reports.
 
-<em>Built with the tools and technologies:</em>
+## Structure
 
-<img src="https://img.shields.io/badge/Markdown-000000.svg?style=flat&logo=Markdown&logoColor=white" alt="Markdown">
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E.svg?style=flat&logo=JavaScript&logoColor=black" alt="JavaScript">
-<img src="https://img.shields.io/badge/NuGet-004880.svg?style=flat&logo=NuGet&logoColor=white" alt="NuGet">
-<img src="https://img.shields.io/badge/XML-005FAD.svg?style=flat&logo=XML&logoColor=white" alt="XML">
-
-</div>
-<br>
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Usage](#usage)
-    - [Testing](#testing)
-
----
-
-## Overview
-
-BookSmart Web Application is a comprehensive platform designed to deliver a seamless online bookstore experience, integrating secure document processing, user management, and administrative tools. Built with a modular architecture, it supports scalable development and deployment, ensuring a robust e-commerce environment.
-
-**Why BookSmart Web Application?**
-
-This project empowers developers to build secure, user-centric web platforms with features such as:
-
-- **🛠️ Modular Architecture:** Facilitates easy integration and maintenance across complex systems.
-- **🔒 Security & Cryptography:** Implements cryptographic standards and PDF handling for data protection.
-- **🛒 E-commerce Workflows:** Supports shopping carts, order processing, and secure payments.
-- **📊 Admin Dashboards:** Provides insightful reports and management tools for platform oversight.
-- **📄 PDF Testing Utilities:** Ensures document consistency and quality through built-in testing features.
-
----
-
-## Getting Started
-
-### Prerequisites
-
-This project requires the following dependencies:
-
-- **Programming Language:** CSharp
-- **Package Manager:** Nuget
-
-### Installation
-
-Build booksmart-web-application from the source and install dependencies:
-
-1. **Clone the repository:**
-
-    ```sh
-    ❯ git clone https://github.com/mzayaan/booksmart-web-application
-    ```
-
-2. **Navigate to the project directory:**
-
-    ```sh
-    ❯ cd booksmart-web-application
-    ```
-
-3. **Install the dependencies:**
-
-**Using [nuget](https://docs.microsoft.com/en-us/dotnet/csharp/):**
-
-```sh
-❯ dotnet restore
+```
+BookSmart.sln
+BookSmart/
+  Account/      Login, Registration, ForgotPassword, Logout
+  User/         BrowseBooks, Cart, Order, Payment, OrderHistory, OrderConfirmation
+  Admin/        Admin, Dashboard, Reports
+  Class/        Business and data-access classes
+  MasterPages/  Shared layout
+  images/       Book covers and assets
+  Web.config    Connection string and authorisation rules
+Database Backup/
+  BookSmart_20250807.bak   SQL Server backup — restore this to get the schema and seed data
 ```
 
-### Usage
+## Running it locally
 
-Run the project with:
+Needs Visual Studio (2019 or later) with the ASP.NET workload, and SQL Server
+with SQL Server Management Studio.
 
-**Using [nuget](https://docs.microsoft.com/en-us/dotnet/csharp/):**
+1. **Restore the database.** In SSMS, restore
+   `Database Backup/BookSmart_20250807.bak` as a database named `BookSmart`.
 
-```sh
-dotnet run
-```
+2. **Set the connection string.** Open `BookSmart/Web.config` and replace the
+   placeholders with your own server and login:
 
-### Testing
+   ```xml
+   <add name="BookSmartDB"
+        connectionString="Server=YOUR_SERVER\YOUR_INSTANCE;Database=BookSmart;User Id=YOUR_DB_USER;Password=YOUR_DB_PASSWORD;"
+        providerName="System.Data.SqlClient"/>
+   ```
 
-Booksmart-web-application uses the {__test_framework__} test framework. Run the test suite with:
+   Or use Windows authentication and drop the user and password entirely:
 
-**Using [nuget](https://docs.microsoft.com/en-us/dotnet/csharp/):**
+   ```xml
+   connectionString="Server=YOUR_SERVER\YOUR_INSTANCE;Database=BookSmart;Integrated Security=True;"
+   ```
 
-```sh
-dotnet test
-```
+3. **Open `BookSmart.sln`**, let NuGet restore the packages, and run.
 
----
+> **Don't commit real credentials.** `Web.config` is tracked, so anything you
+> put in it is public. Keep the placeholders in the committed copy, or move the
+> connection string into a `Web.local.config` (already gitignored) and reference
+> it with `configSource`.
 
-<div align="left"><a href="#top">⬆ Return</a></div>
+## Hosting
 
----
+GitHub Pages can't host this — it serves static files only, and Web Forms needs
+IIS and a live SQL Server to render a page. It needs Windows hosting, such as
+Azure App Service with Azure SQL, or a free ASP.NET host like MonsterASP.NET.
